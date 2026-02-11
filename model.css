@@ -10,7 +10,8 @@
 }
 
 body {
-    background-color: var(--primary-color);
+    background: url('https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/plano_fundo.avif') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     color: wheat  ;
     text-align: center;
@@ -73,4 +74,26 @@ p{
             rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
             rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+.sidebar {
+    background-color: var(--secondary-color);
+    color: wheat;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50%;
+    width: 50px;
+    max-width: 50px;
+    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, 
+            rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, 
+            rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.sidebar:hover {
+    width: 200px;
+    
+}   
 

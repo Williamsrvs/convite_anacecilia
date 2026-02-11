@@ -3,48 +3,769 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="model.css">
-    <script src="script.js"></script>   
+    <title>🎂 Festa da Ana Cecília - 4 Aninhos! 🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Fredoka:wght@400;600;700&family=Chewy&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --rosa-claro: #FFB6D9;
+            --rosa-medio: #FF8DC7;
+            --rosa-forte: #E85D9E;
+            --azul-ceu: #A4D4FF;
+            --azul-stitch: #5BA3D0;
+            --roxo-suave: #D4A5F4;
+            --amarelo-sol: #FFE66D;
+            --verde-folha: #9EE09E;
+            --laranja-festa: #FFAB73;
+            --branco: #FFFFFF;
+            --texto-escuro: #2C3E50;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, var(--rosa-claro) 0%, var(--azul-ceu) 50%, var(--roxo-suave) 100%);
+            background-attachment: fixed;
+            color: var(--texto-escuro);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Balões flutuantes animados */
+        .baloes-fundo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .balao {
+            position: absolute;
+            font-size: 3rem;
+            animation: flutuar 15s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        .balao:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .balao:nth-child(2) { left: 25%; animation-delay: 3s; font-size: 2.5rem; }
+        .balao:nth-child(3) { left: 50%; animation-delay: 6s; font-size: 3.5rem; }
+        .balao:nth-child(4) { left: 75%; animation-delay: 9s; }
+        .balao:nth-child(5) { left: 90%; animation-delay: 12s; font-size: 2.8rem; }
+
+        @keyframes flutuar {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-10vh) rotate(180deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        /* Confetes caindo */
+        .confete {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--rosa-forte);
+            animation: cair 8s infinite linear;
+        }
+
+        @keyframes cair {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Container principal */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header com animação de entrada */
+        .header {
+            background: linear-gradient(135deg, var(--rosa-forte) 0%, var(--roxo-suave) 100%);
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: aparecer 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes aparecer {
+            from { 
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .header::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 3rem;
+            animation: piscar 2s infinite;
+        }
+
+        .header::after {
+            content: '🎈';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 3rem;
+            animation: piscar 2s infinite;
+            animation-delay: 1s;
+        }
+
+        @keyframes piscar {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        h1 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 4rem;
+            color: var(--branco);
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3),
+                        0 0 20px rgba(255, 182, 217, 0.8);
+            margin-bottom: 15px;
+            animation: pular 2s infinite ease-in-out;
+        }
+
+        @keyframes pular {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitulo {
+            font-family: 'Chewy', cursive;
+            font-size: 2rem;
+            color: var(--amarelo-sol);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Card da foto - Layout em duas colunas */
+        .foto-card {
+            background: var(--branco);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: aparecer 1.2s ease-out;
+            animation-delay: 0.3s;
+            animation-fill-mode: both;
+            border: 5px dashed var(--rosa-forte);
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        /* Foto principal - lado esquerdo */
+        .foto-principal {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .foto-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            border: 5px solid var(--azul-stitch);
+        }
+
+        .foto-container:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .foto-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Fotos modulares - lado direito */
+        .foto-cecilinha {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .foto-modular {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid var(--amarelo-sol);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: aparecer-foto 0.6s ease-out backwards;
+        }
+
+        .foto-modular:nth-child(1) { 
+            animation-delay: 0.5s; 
+            border-color: var(--rosa-forte);
+        }
+        .foto-modular:nth-child(2) { 
+            animation-delay: 0.7s; 
+            border-color: var(--azul-stitch);
+        }
+        .foto-modular:nth-child(3) { 
+            animation-delay: 0.9s; 
+            border-color: var(--roxo-suave);
+        }
+        .foto-modular:nth-child(4) { 
+            animation-delay: 1.1s; 
+            border-color: var(--verde-folha);
+        }
+
+        @keyframes aparecer-foto {
+            from {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .foto-modular:hover {
+            transform: scale(1.2) rotate(10deg);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+            border-width: 8px;
+        }
+
+        .foto-modular img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Informações do convite */
+        .convite-info {
+            background: linear-gradient(135deg, var(--branco) 0%, var(--rosa-claro) 100%);
+            border-radius: 25px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: aparecer 1.4s ease-out;
+            animation-delay: 0.6s;
+            animation-fill-mode: both;
+            border: 5px solid var(--azul-stitch);
+        }
+
+        .convite-info p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--texto-escuro);
+        }
+
+        .convite-info strong {
+            color: var(--rosa-forte);
+            font-weight: 700;
+        }
+
+        .mensagem-especial {
+            font-family: 'Chewy', cursive;
+            font-size: 1.5rem;
+            color: var(--roxo-suave);
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .emoji-grande {
+            font-size: 2rem;
+            display: inline-block;
+            animation: girar 3s infinite linear;
+        }
+
+        @keyframes girar {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Controle de áudio estilizado */
+        .audio-player {
+            background: linear-gradient(135deg, var(--azul-stitch) 0%, var(--roxo-suave) 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: aparecer 1.6s ease-out;
+            animation-delay: 0.9s;
+            animation-fill-mode: both;
+        }
+
+        .audio-player p {
+            color: var(--branco);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: var(--branco);
+        }
+
+        /* JOGO DO STITCH - SEÇÃO ORGANIZADA */
+        .game-section {
+            background: linear-gradient(135deg, var(--azul-stitch) 0%, var(--azul-ceu) 100%);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: aparecer 1.8s ease-out;
+            animation-delay: 1.2s;
+            animation-fill-mode: both;
+            border: 5px solid var(--roxo-suave);
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .game-header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .game-header h2 {
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 2.5rem;
+            color: var(--branco);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .game-score {
+            font-size: 1.8rem;
+            color: var(--amarelo-sol);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 3px dashed var(--branco);
+        }
+
+        .stitch {
+            position: absolute;
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            z-index: 5;
+        }
+
+        .stitch:hover {
+            transform: scale(1.1);
+        }
+
+        .stitch:active {
+            transform: scale(0.9);
+        }
+
+        .game-instructions {
+            text-align: center;
+            color: var(--branco);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Botão interativo */
+        .botao-confirmar {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--verde-folha) 0%, var(--azul-ceu) 100%);
+            color: var(--branco);
+            font-family: 'Bubblegum Sans', cursive;
+            font-size: 1.8rem;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+            width: fit-content;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            animation: pulsar 2s infinite;
+        }
+
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .botao-confirmar:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .botao-confirmar:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--rosa-forte) 0%, var(--roxo-suave) 100%);
+            color: var(--branco);
+            padding: 30px;
+            text-align: center;
+            border-radius: 25px 25px 0 0;
+            margin-top: 50px;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            margin: 5px 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitulo {
+                font-size: 1.5rem;
+            }
+
+            .foto-card {
+                flex-direction: column;
+            }
+
+            .foto-principal {
+                min-width: 100%;
+            }
+
+            .foto-cecilinha {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .foto-modular {
+                width: 100px;
+                height: 100px;
+            }
+
+            .convite-info p {
+                font-size: 1.1rem;
+            }
+
+            .botao-confirmar {
+                font-size: 1.5rem;
+                padding: 15px 35px;
+            }
+
+            .balao {
+                font-size: 2rem;
+            }
+
+            .game-header h2 {
+                font-size: 2rem;
+            }
+
+            .game-score {
+                font-size: 1.5rem;
+            }
+
+            .stitch {
+                width: 80px;
+            }
+
+            .game-area {
+                height: 250px;
+            }
+        }
+
+        /* Elementos decorativos extras */
+        .estrela {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: brilhar 3s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes brilhar {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        .estrela:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .estrela:nth-child(2) { top: 25%; right: 15%; animation-delay: 1s; }
+        .estrela:nth-child(3) { top: 60%; left: 5%; animation-delay: 2s; }
+        .estrela:nth-child(4) { top: 70%; right: 8%; animation-delay: 1.5s; }
+
+        .img-area {
+            background: transparent;
 
 
-    <title>🎂 Ana Cecilia</title>
+        }
+
+
+    </style>
 </head>
 <body>
-                <div class="header">
-            <h1>🎂 Ana Cecilia</h1>
-                <p>Feliz Aniversário! 🎉</p>
-                    </div>
-
-        <div class="sidebar-menu">
-            
-        </div>  
-            <div class="content">
-            <p>Um dia especial para uma criança muito especial! Venha celebrar o meu aniversário 💖</p>
-                <p><strong>Aniversariante do dia:</strong> Ana Cecilia</p>
-                    <p><strong>Data de Aniversário:</strong> 23 de Fevereiro 2026</p>
-                        <p><strong>Horário:</strong> As 16:00 Horas</p>               
-            </div>
-
-
-    <div class="video">
-    <iframe 
-        width="560" 
-        height="315" 
-        src="https://youtu.be/L4X1_3VipWs?si=dwLfjSofw6pA1uUF" 
-        title="video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-    </iframe>
-
-</div>
-
-
-    <div class="footer">
-        <p>&copy; Feito com ❤️ por Williams Rodrigues 2026</p>
+    <!-- Balões flutuantes -->
+    <div class="baloes-fundo">
+        <div class="balao">🎈</div>
+        <div class="balao">🎈</div>
+        <div class="balao">🎈</div>
+        <div class="balao">🎈</div>
+        <div class="balao">🎈</div>
     </div>
 
+    <!-- Estrelas decorativas -->
+    <div class="estrela">⭐</div>
+    <div class="estrela">✨</div>
+    <div class="estrela">⭐</div>
+    <div class="estrela">✨</div>
 
+    <!-- Container Principal -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎂 Ana Cecília 🎂</h1>
+            <p class="subtitulo">Estou fazendo 4 Aninhos! 🎉</p>
+        </div>
+
+        <!-- Player de Áudio com autoplay -->
+        <div class="audio-player">
+            <p>🎵 Música da Festa 🎵</p>
+            <audio controls autoplay loop>
+                <source src="https://github.com/Williamsrvs/convite_anacecilia/raw/main/Lilo_and_Stitch-Hawaiian_Roller_Coaster_Ride_English_48KBPS.mp4" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </div>
+
+        <!-- Fotos da Aniversariante - Layout em 2 colunas -->
+        <div class="foto-card">
+            <!-- Foto Principal - Esquerda -->
+            <div class="foto-principal">
+                <div class="foto-container">
+                    <img src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/b9f8874628cb3a2bab7ce3fd69aa1075.jpg" alt="Ana Cecília - Aniversariante">
+                </div>
+            </div>
+
+            <!-- Fotos Modulares Redondas - Direita -->
+            <div class="foto-cecilinha">
+                <h1>Fotos da Aniversariante</h1>
+                <div class="foto-modular">
+                    <img src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/1%20(1).jpeg" alt="Ana Cecília">
+                </div>
+                <div class="foto-modular">
+                    <img src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/1%20(2).jpeg" alt="Ana Cecília">
+                </div>
+                <div class="foto-modular">
+                    <img src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/1%20(3).jpeg" alt="Ana Cecília">
+                </div>
+                <div class="foto-modular">
+                    <img src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/1%20(4).jpeg" alt="Ana Cecília">
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Informações do Convite -->
+        <div class="convite-info">
+            <p class="mensagem-especial">
+                <span class="emoji-grande">💖</span> Um dia especial para uma criança muito especial! <span class="emoji-grande">💖</span>
+            </p>
+            <p class="mensagem-especial">
+                Venha celebrar comigo! 🎊
+            </p>
+            
+            <p><strong>🎂 Aniversariante:</strong> Ana Cecília</p>
+            <p><strong>📅 Data:</strong> 23 de Fevereiro de 2026 (Domingo)</p>
+            <p><strong>🕐 Horário:</strong> 16h00 (4 da tarde)</p>
+            <p><strong>🎪 Tema:</strong> Lilo & Stitch - Uma Festa Havaiana! 🌺</p>
+            <p><strong>🎁 Não esqueça:</strong> Traje sua alegria e disposição para brincar muito! 🤸‍♀️</p>
+        </div>
+
+        <!-- JOGO DO STITCH - SEÇÃO ORGANIZADA -->
+        <div class="game-section">
+            <div class="game-header">
+                <h2>🎮 Pegue o Stitch! 🎮</h2>
+                <div class="game-score">Pontos: <span id="score">0</span></div>
+            </div>
+
+            <div class="game-area">
+                <div class="img-area">
+                <img 
+                    src="https://raw.githubusercontent.com/Williamsrvs/convite_anacecilia/refs/heads/main/pngtree-stitch-beautiful-png-image_15274467.png"
+                    alt="Stitch"
+                    class="stitch"
+                    id="stitch"
+                    type="logo"
+                >
+                </div>
+            </div>
+
+            <div class="game-instructions">
+                💙 Clique no Stitch para ganhar pontos! 💙
+            </div>
+        </div>
+
+        <!-- Botão de Confirmação -->
+        <button class="botao-confirmar" onclick="confirmarPresenca()">
+            ✅ Confirmar Presença! ✅
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>✨ Não vejo a hora de comemorar com você! ✨</p>
+        <p>🎈 Vai ser uma festa inesquecível! 🎈</p>
+        <p>&copy; Desenvolvido por Williams Rodrigues - 2026</p>
+        <p>Tel.: (82) 98109-0042</p>
+    </div>
+
+    <script>
+        // JOGO DO STITCH
+        let score = 0;
+        const stitch = document.getElementById("stitch");
+        const scoreDisplay = document.getElementById("score");
+        const gameArea = document.querySelector('.game-area');
+
+        function moveStitch() {
+            const gameRect = gameArea.getBoundingClientRect();
+            const maxX = gameArea.offsetWidth - 100; // largura do stitch
+            const maxY = gameArea.offsetHeight - 100; // altura do stitch
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            stitch.style.left = randomX + "px";
+            stitch.style.top = randomY + "px";
+        }
+
+        stitch.addEventListener("click", () => {
+            score++;
+            scoreDisplay.textContent = score;
+            moveStitch();
+            
+            // Efeito visual de acerto
+            stitch.style.transform = "scale(1.3) rotate(360deg)";
+            setTimeout(() => {
+                stitch.style.transform = "scale(1)";
+            }, 200);
+        });
+
+        // Posição inicial do Stitch
+        moveStitch();
+
+        // Função para confirmar presença
+        function confirmarPresenca() {
+            alert('🎉 Uhuuul! Que alegria que você vai vir! 🎉\n\nNos vemos no dia 23 de fevereiro às 16h!\n\nSerá uma festa incrível! 🎈🎂💖');
+            
+            // Adiciona confetes na tela
+            criarConfetes();
+        }
+
+        // Criar confetes coloridos
+        function criarConfetes() {
+            const cores = ['#FFB6D9', '#FF8DC7', '#E85D9E', '#A4D4FF', '#5BA3D0', '#D4A5F4', '#FFE66D', '#9EE09E', '#FFAB73'];
+            const body = document.body;
+            
+            for (let i = 0; i < 50; i++) {
+                const confete = document.createElement('div');
+                confete.className = 'confete';
+                confete.style.left = Math.random() * 100 + '%';
+                confete.style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
+                confete.style.animationDelay = Math.random() * 3 + 's';
+                confete.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                body.appendChild(confete);
+                
+                // Remove o confete após a animação
+                setTimeout(() => {
+                    confete.remove();
+                }, 8000);
+            }
+        }
+
+        // Adiciona confetes automaticamente quando a página carrega
+        window.addEventListener('load', () => {
+            setTimeout(criarConfetes, 1000);
+        });
+
+        // Efeito de clique com estrelinhas
+        document.addEventListener('click', (e) => {
+            const estrela = document.createElement('div');
+            estrela.textContent = '✨';
+            estrela.style.position = 'fixed';
+            estrela.style.left = e.clientX + 'px';
+            estrela.style.top = e.clientY + 'px';
+            estrela.style.fontSize = '2rem';
+            estrela.style.pointerEvents = 'none';
+            estrela.style.animation = 'brilhar 1s ease-out forwards';
+            estrela.style.zIndex = '9999';
+            document.body.appendChild(estrela);
+            
+            setTimeout(() => {
+                estrela.remove();
+            }, 1000);
+        });
+
+        // Tenta reproduzir o áudio automaticamente (alguns navegadores podem bloquear)
+        window.addEventListener('load', () => {
+            const audio = document.querySelector('audio');
+            if (audio) {
+                audio.play().catch(err => {
+                    console.log('Autoplay bloqueado pelo navegador. O usuário precisa interagir com a página primeiro.');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
